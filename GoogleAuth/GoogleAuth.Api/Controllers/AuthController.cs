@@ -8,22 +8,29 @@ namespace GoogleAuth.Api.Controllers
     [ApiController]
     public class AuthController : ControllerBase
     {
+        //
+        // [HttpGet("google")]
+        // public async Task GoogleLogin()
+        // {
+        //     await Request.HttpContext.ChallengeAsync(GoogleDefaults.AuthenticationScheme);
+        // }
 
+        // [HttpGet("google")]
+        // public IActionResult GoogleLogin()
+        // {
+        //     return new ChallengeResult(GoogleDefaults.AuthenticationScheme);
+        // }
+        
         [HttpGet("google")]
-        public async Task GoogleLogin()
-        {
-            await Request.HttpContext.ChallengeAsync(GoogleDefaults.AuthenticationScheme);
-        }
-
         [HttpGet("google/callback")]
-        public async Task<IActionResult> GoogleCallback()
+        public async Task<IActionResult> GoogleCallback(string returnUrl)
         {
 
             var authenticateResult = await Request.HttpContext.AuthenticateAsync(GoogleDefaults.AuthenticationScheme);
             
             if (!authenticateResult.Succeeded)
             {
-                return BadRequest(); // TODO: Handle this better.
+                return new ChallengeResult(GoogleDefaults.AuthenticationScheme);
             }
             
             var claims = authenticateResult.Principal.Identities.FirstOrDefault()!.Claims.Select(claim => new
@@ -33,9 +40,8 @@ namespace GoogleAuth.Api.Controllers
                 claim.Type,
                 claim.Value
             });
-            
-            return Ok(claims);
-            
+
+            return LocalRedirect(returnUrl);
             // // Process the callback and obtain the access and refresh tokens from Google
             //
             // var accessToken = "" /* obtain the access token */;
