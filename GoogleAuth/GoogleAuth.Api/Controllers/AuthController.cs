@@ -42,31 +42,6 @@ namespace GoogleAuth.Api.Controllers
             });
 
             return LocalRedirect(returnUrl);
-            // // Process the callback and obtain the access and refresh tokens from Google
-            //
-            // var accessToken = "" /* obtain the access token */;
-            // var refreshToken = "" /* obtain the refresh token */;
-            //
-            // // Set the access token as an HTTP-only cookie
-            // Response.Cookies.Append("AccessToken", accessToken, new CookieOptions
-            // {
-            //     HttpOnly = true,
-            //     Secure = true,    // Set to true if using HTTPS
-            //     SameSite = SameSiteMode.Strict, // Adjust based on your requirements
-            //     // Additional cookie options can be set here
-            // });
-            //
-            // // Set the refresh token as a non-HTTP-only cookie
-            // Response.Cookies.Append("RefreshToken", refreshToken, new CookieOptions
-            // {
-            //     HttpOnly = false,
-            //     Secure = true,    // Set to true if using HTTPS
-            //     SameSite = SameSiteMode.Strict, // Adjust based on your requirements
-            //     // Additional cookie options can be set here
-            // });
-            //
-            // // Respond with a message or redirect if needed
-            // return Ok(new { Message = "Access and refresh tokens set as cookies." });
         }
     }
 }
