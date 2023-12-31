@@ -11,8 +11,8 @@ var configuration = builder.Configuration;
         })
         .AddCookie(o =>
         {
-            o.LoginPath = "/api/auth/google";
-            o.LogoutPath = "/logout";
+            // o.LoginPath = "/swagger";
+            o.LogoutPath = "/api/auth/logout";
         })
         .AddGoogle(googleOptions =>
         {
