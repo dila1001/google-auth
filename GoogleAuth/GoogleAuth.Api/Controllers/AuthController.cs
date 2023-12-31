@@ -21,13 +21,15 @@ namespace GoogleAuth.Api.Controllers
                 return new ChallengeResult(GoogleDefaults.AuthenticationScheme);
             }
             
-            var claims = authenticateResult.Principal.Identities.FirstOrDefault()!.Claims.Select(claim => new
+            var claims = authenticateResult.Principal.Claims.Select(claim => new
             {
                 claim.Issuer,
                 claim.OriginalIssuer,
                 claim.Type,
                 claim.Value
             });
+            
+            // if user does not exist, 
             
             return LocalRedirect(returnUrl);
         }

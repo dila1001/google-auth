@@ -1,3 +1,4 @@
+using GoogleAuth.Api.Services.Users;
 using Microsoft.AspNetCore.Authentication.Cookies;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -23,6 +24,7 @@ var configuration = builder.Configuration;
         });
     
     builder.Services.AddControllers();
+    builder.Services.AddScoped<IUserService, UserService>();
     builder.Services.AddEndpointsApiExplorer();
     builder.Services.AddSwaggerGen();
 }
