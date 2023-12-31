@@ -5,5 +5,5 @@ namespace GoogleAuth.Api.Services.Users;
 
 public interface IUserService
 {
-    User getUserInfo(ClaimsPrincipal user);
+    User GetUserInfo(ClaimsPrincipal user);
 }

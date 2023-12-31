@@ -6,16 +6,12 @@ namespace GoogleAuth.Api.Services.Users;
 public class UserService : IUserService
 {
 
-    public User getUserInfo(ClaimsPrincipal user)
+    public User GetUserInfo(ClaimsPrincipal user)
     {
 
-        var userInfo = new User()
-        {
-            Id = user.FindFirst(ClaimTypes.NameIdentifier)?.Value,
-            Name = user.FindFirst(ClaimTypes.GivenName)?.Value,
-            Surname = user.FindFirst(ClaimTypes.Surname)?.Value,
-            Email = user.FindFirst(ClaimTypes.Email)?.Value
-        };
+        var userInfo = new User(user.FindFirst(ClaimTypes.NameIdentifier)!.Value,
+            user.FindFirst(ClaimTypes.GivenName)!.Value, user.FindFirst(ClaimTypes.Surname)!.Value,
+            user.FindFirst(ClaimTypes.Email)!.Value);
 
         return userInfo;
     }

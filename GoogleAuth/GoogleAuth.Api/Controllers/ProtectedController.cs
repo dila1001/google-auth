@@ -21,7 +21,7 @@ public class ProtectedController : ControllerBase
     [HttpGet("Test")]
     public IActionResult Test()
     {
-        var userInfo = _userService.getUserInfo(User);
+        var userInfo = _userService.GetUserInfo(User);
         return Ok(userInfo);
     }
 }

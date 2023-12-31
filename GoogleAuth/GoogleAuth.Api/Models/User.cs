@@ -1,10 +1,3 @@
 namespace GoogleAuth.Api.Models;
 
-public class User
-{
-    public string? Id { get; set; }
-    public string? Name { get; set; }
-    public string? Surname { get; set; }
-    public string? Email { get; set; }
-    
-}
+public record User(string Id, string Name, string Surname, string Email);
